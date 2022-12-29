@@ -69,7 +69,7 @@ Milieu choixmilieu2(uint32_t choix){
         Milieu Mil2= Milieu("Luka Modric", 5, 99, 74, 79, 84, 93, 80);
     }
     if (choix == 3){
-        Milieu Mil2= Milieu("Neymar Dos Santos", 5, 93, 85, 65, 99, 93, 65);
+        Milieu Mil2= Milieu("Neymar Jr", 5, 93, 85, 65, 99, 93, 65);
     }
     return Mil2;
 }
