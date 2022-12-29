@@ -1,7 +1,7 @@
-#pragma once
+#ifndef __DEFENSEUR_H__
+#define __DEFENSEUR_H__
 #include <iostream>
 #include <string>
-#include "Joueur.hh"
 #include "JoueurDeChamp.hh"
 
 class Defenseur : public JoueurDeChamp{
@@ -13,3 +13,5 @@ public:
 private :
     int _defense;
 };
+
+#endif

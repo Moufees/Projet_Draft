@@ -1,4 +1,4 @@
-#pragma once
+/*#pragma once
 #include <iostream>
 #include <string>
 #include "Joueur.hh"
@@ -130,4 +130,4 @@ Gardien choixgardien(uint32_t choix){
     if (choix == 3){
         return Gardien("Alisson Becker", 10, 97, 92, 89);
     }
-}
+}*/

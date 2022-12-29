@@ -1,19 +1,99 @@
-#pragma once
-#include <iostream>
-#include <string>
-#include "Joueur.hh"
-#include "JoueurDeChamp.hh"
+#include "Defenseur.hh"
+#include "Gardien.hh"
+#include "Milieu.hh"
+#include "Attaquant.hh"
 
-class Attaquant : public JoueurDeChamp{
-public:
-  Attaquant(std::string nom, int placement, int passe, int vitesse, int physique, int dribble, int tir):JoueurDeChamp(nom, placement, passe, vitesse, physique), _dribble(dribble), _tir(tir){} 
-  virtual std::string poste() const {return "Attaquant";};
-  int getTir() const {return _tir;};
-  int tirer(Joueur adversaire);
-  int getdribble() const {return _dribble;};
-  int dribbler(Joueur adversaire);
+int Attaquant::dribbler(Joueur& adversaire){
 
-private :
-    int _dribble;
-    int _tir;
-};
+    int dribble = this->getDribble() + this->getVitesse() + this->getPhysique();
+
+    if (dynamic_cast<Defenseur*>(&adversaire) != nullptr) {
+      Defenseur* d = dynamic_cast<Defenseur*>(&adversaire);
+      int defense = d->getDefense() + d->getVitesse() + d->getPhysique();
+      int diff = dribble - defense;
+      if(diff > 0){
+        if (rand()%10 > 0){
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+      else if(diff == 0){
+        if (rand()%10 >= 5){
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+      else{
+        if (rand()%10 == 9){
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+    }
+    else if (dynamic_cast<Gardien*>(&adversaire) != nullptr) {
+      Gardien* g = dynamic_cast<Gardien*>(&adversaire);
+      int sortie = g->getSortie();
+      int diff = dribble - sortie;
+      if(diff > 0){
+        if (rand()%10 > 0){
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+      else if(diff == 0){
+        if (rand()%10 >= 5){
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+      else{
+        if (rand()%10 == 9){
+          return 1;
+        }
+        else {
+          return 0;
+        }
+      }
+    }
+    return 1;
+}
+
+int Attaquant::tirer(Gardien& gardien){
+    int arret = gardien.getArret();
+    int tir = this->getTir();
+    int diff = tir - arret;
+    if(diff > 0){
+        if (rand()%10 > 0){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    else if(diff == 0){
+        if (rand()%10 >= 5){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+    else{
+          if (rand()%10 == 9){
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+}

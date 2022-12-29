@@ -1,11 +1,7 @@
-#pragma once
+#ifndef __JOUEUR_H__
+#define __JOUEUR_H__
 #include <iostream>
 #include <string>
-#include "JoueurDeChamp.hh"
-#include "Gardien.hh"
-#include "Attaquant.hh"
-#include "Defenseur.hh"
-#include "Milieu.hh"
 
 class Joueur{
 public:
@@ -17,9 +13,12 @@ public:
   int getPasse() const {return _passe;};
   int passer(Joueur adversaire);
   virtual std::string poste() const = 0;
+  virtual int getVitesse() const = 0;
 
 private:
   std::string  _nom;
   int _placement;
   int _passe;
 };
+
+#endif
