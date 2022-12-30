@@ -1,0 +1,5 @@
+Attaquant.o: Attaquant.cc Gardien.hh Joueur.hh Ballon.hh Milieu.hh \
+ Attaquant.hh JoueurDeChamp.hh Defenseur.hh
+ChoixJoueur.o: ChoixJoueur.cc
+test.o: test.cc Milieu.hh Attaquant.hh JoueurDeChamp.hh Joueur.hh \
+ Ballon.hh Gardien.hh Defenseur.hh

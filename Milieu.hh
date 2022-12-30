@@ -1,8 +1,5 @@
 #ifndef __MILIEU_H__
 #define __MILIEU_H__
-#include <iostream>
-#include <string>
-#include "JoueurDeChamp.hh"
 #include "Attaquant.hh"
 #include "Defenseur.hh"
 
