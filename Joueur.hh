@@ -21,4 +21,7 @@ private:
   int _passe;
 };
 
+int passer(Joueur adversaire, Ball ballon){
+  ballon.setjoueur(adversaire);
+}
 #endif
