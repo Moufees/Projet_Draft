@@ -1,5 +1,6 @@
 #include "Milieu.hh"
 #include "Gardien.hh"
+#include "Ball.hh"
 
 int main()
 {
@@ -16,6 +17,5 @@ int main()
     std::cout << a.dribbler(g) << std::endl;
     std::cout << a.dribbler(static_cast<Defenseur&>(m)) << std::endl;
 
-    //i = a.dribbler(m);
     return 0;
 }
