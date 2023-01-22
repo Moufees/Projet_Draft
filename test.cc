@@ -29,7 +29,7 @@ int main()
     a1.dribbler(d);
     a1.dribbler(d);
     a1.dribbler(d);
-    std::cout << a1.poste() << std::endl;
+    /*std::cout << a1.poste() << std::endl;
     std::cout << g.poste() << std::endl;
     std::cout << m1.poste() << std::endl;
     std::cout << m2.poste() << std::endl;
@@ -43,7 +43,7 @@ int main()
     std::cout << a2.tirer(g) << std::endl;
     std::cout << a3.tirer(g) << std::endl;
     std::cout << a1.dribbler(static_cast<Defenseur&>(m1)) << std::endl;
-    std::cout << m2.dribbler(static_cast<Defenseur&>(m1)) << std::endl;
+    std::cout << m2.dribbler(static_cast<Defenseur&>(m1)) << std::endl;*/
 
     //Afficher tous les attaquants
     std::cout << "Attaquants :" << std::endl;
@@ -81,6 +81,39 @@ int main()
     //Melanger les listes
     cat.melangerListe();
 
+    //Choisir un attaquant au hasard et on enleve le joueur choisi de la liste
+    Attaquant* attaquant = cat.choixAttaquant();
+    std::cout << "Attaquant choisi au hasard :" << std::endl;
+    std::cout << attaquant->getNom() << std::endl;
+    cat.supprimerJoueur(attaquant->getNom());
+
+
+    std::cout << std::endl;
+
+    //Choisir un milieu au hasard et on enleve le joueur choisi de la liste
+    Milieu* milieu = cat.choixMilieu();
+    std::cout << "Milieu choisi au hasard :" << std::endl;
+    std::cout << milieu->getNom() << std::endl;
+    cat.supprimerJoueur(milieu->getNom());
+
+    std::cout << std::endl;
+
+    //Choisir un defenseur au hasard et on enleve le joueur choisi de la liste
+    Defenseur* defenseur = cat.choixDefenseur();
+    std::cout << "Defenseur choisi au hasard :" << std::endl;
+    std::cout << defenseur->getNom() << std::endl;
+    cat.supprimerJoueur(defenseur->getNom());
+
+    std::cout << std::endl;
+
+    //Choisir un gardien au hasard et on enleve le joueur choisi de la liste
+    Gardien* gardien = cat.choixGardien();
+    std::cout << "Gardien choisi au hasard :" << std::endl;
+    std::cout << gardien->getNom() << std::endl;
+    cat.supprimerJoueur(gardien->getNom());
+
+    std::cout << std::endl;
+
     //Afficher tous les attaquants
     std::cout << "Attaquants :" << std::endl;
     for (auto& a : cat.getListeAttaquant()) {
@@ -111,19 +144,10 @@ int main()
         std::cout << g->getNom() << std::endl;
     }
 
-    //delete all the players
-    for (auto& a : cat.getListeAttaquant()) {
-        delete a;
-    }
-    for (auto& m : cat.getListeMilieu()) {
-        delete m;
-    }
-    for (auto& d : cat.getListeDefenseur()) {
-        delete d;
-    }
-    for (auto& g : cat.getListeGardien()) {
-        delete g;
-    }
+    std::cout << std::endl;
+
+
+    cat.deleteJoueurs();
 
     return 0;
 }

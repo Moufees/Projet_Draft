@@ -49,3 +49,63 @@ void Jeu::melangerListe()
     std::shuffle(listeMilieu.begin(), listeMilieu.end(), generator);
     std::shuffle(listeGardien.begin(), listeGardien.end(), generator);
 }
+
+//Retourne un pointeur vers un attaquant choisi aléatoirement dans la liste
+Attaquant* Jeu::choixAttaquant() const{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, listeAttaquant.size()-1);
+    return listeAttaquant[dis(gen)];
+}
+
+//Retourne un pointeur vers un milieu choisi aléatoirement dans la liste et l'enlève de la liste
+Milieu* Jeu::choixMilieu() const{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, listeMilieu.size()-1);
+    return listeMilieu[dis(gen)];
+}
+
+//Retourne un pointeur vers un defenseur choisi aléatoirement dans la liste
+Defenseur* Jeu::choixDefenseur() const{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, listeDefenseur.size()-1);
+    return listeDefenseur[dis(gen)];
+}
+
+//Retourne un pointeur vers un gardien choisi aléatoirement dans la liste
+Gardien* Jeu::choixGardien() const{
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, listeGardien.size()-1);
+    return listeGardien[dis(gen)];
+}
+
+//Supprime un joueur de la liste en fonction de son nom
+void Jeu::supprimerJoueur(std::string nom){
+    for (auto it = listeAttaquant.begin(); it != listeAttaquant.end(); it++){
+        if ((*it)->getNom() == nom){
+            listeAttaquant.erase(it);
+            return;
+        }
+    }
+    for (auto it = listeMilieu.begin(); it != listeMilieu.end(); it++){
+        if ((*it)->getNom() == nom){
+            listeMilieu.erase(it);
+            return;
+        }
+    }
+    for (auto it = listeDefenseur.begin(); it != listeDefenseur.end(); it++){
+        if ((*it)->getNom() == nom){
+            listeDefenseur.erase(it);
+            return;
+        }
+    }
+    for (auto it = listeGardien.begin(); it != listeGardien.end(); it++){
+        if ((*it)->getNom() == nom){
+            listeGardien.erase(it);
+            return;
+        }
+    }
+}

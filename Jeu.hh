@@ -25,6 +25,11 @@ class Jeu
     std::vector <Milieu*> getListeMilieu() const {return listeMilieu;};
     std::vector <Defenseur*> getListeDefenseur() const {return listeDefenseur;};
     std::vector <Gardien*> getListeGardien() const {return listeGardien;};
+    Attaquant* choixAttaquant() const;
+    Milieu* choixMilieu() const;
+    Defenseur* choixDefenseur() const;
+    Gardien* choixGardien() const;
+    void supprimerJoueur(std::string nom);
     void melangerListe();
 
     private:
