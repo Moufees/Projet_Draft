@@ -77,6 +77,7 @@ int main()
 
     //Choisir un attaquant au hasard et on enleve le joueur choisi de la liste
     Attaquant* attaquant = cat.choixAttaquant();
+    cat.ajoutEquipe1(attaquant);
     std::cout << "Attaquant choisi au hasard :" << std::endl;
     std::cout << attaquant->getNom() << std::endl;
     cat.supprimerJoueur(attaquant->getNom());
@@ -86,6 +87,7 @@ int main()
 
     //Choisir un milieu au hasard et on enleve le joueur choisi de la liste
     Milieu* milieu = cat.choixMilieu();
+    cat.ajoutEquipe1(milieu);
     std::cout << "Milieu choisi au hasard :" << std::endl;
     std::cout << milieu->getNom() << std::endl;
     cat.supprimerJoueur(milieu->getNom());
@@ -94,6 +96,7 @@ int main()
 
     //Choisir un defenseur au hasard et on enleve le joueur choisi de la liste
     Defenseur* defenseur = cat.choixDefenseur();
+    cat.ajoutEquipe2(defenseur);
     std::cout << "Defenseur choisi au hasard :" << std::endl;
     std::cout << defenseur->getNom() << std::endl;
     cat.supprimerJoueur(defenseur->getNom());
@@ -102,6 +105,7 @@ int main()
 
     //Choisir un gardien au hasard et on enleve le joueur choisi de la liste
     Gardien* gardien = cat.choixGardien();
+    cat.ajoutEquipe2(gardien);
     std::cout << "Gardien choisi au hasard :" << std::endl;
     std::cout << gardien->getNom() << std::endl;
     cat.supprimerJoueur(gardien->getNom());
@@ -140,7 +144,21 @@ int main()
 
     std::cout << std::endl;
 
+    //afficher les joueurs de l'equipe 1
+    std::cout << "Equipe 1 :" << std::endl;
+    for (auto& e : cat.getEquipe1()) {
+        std::cout << e->getNom() << std::endl;
+    }
 
+    std::cout << std::endl;
+
+    //afficher les joueurs de l'equipe 2
+    std::cout << "Equipe 2 :" << std::endl; 
+    for (auto& e : cat.getEquipe2()) {
+        std::cout << e->getNom() << std::endl;
+    }
+
+    std::cout << std::endl;
     cat.deleteJoueurs();
 
     return 0;

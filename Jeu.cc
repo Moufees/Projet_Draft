@@ -105,3 +105,11 @@ void Jeu::supprimerJoueur(std::string nom){
         }
     }
 }
+
+void Jeu::ajoutEquipe1(Joueur* j){
+    Equipe1.push_back(j);
+}
+
+void Jeu::ajoutEquipe2(Joueur* j){
+    Equipe2.push_back(j);
+}
