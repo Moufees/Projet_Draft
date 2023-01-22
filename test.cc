@@ -7,12 +7,6 @@
 
 int main()
 {
-    int aleatoire;
-    std::ifstream a("aleatoire.txt");
-    a>>aleatoire;
-    aleatoire=aleatoire+1;
-    std::ofstream b("aleatoire.txt");
-    b<<aleatoire<< std::endl;
     std::ifstream f("basedejoueurs.csv");
     Jeu cat(f);
     Gardien g("Yassine Bounou", 1,1,1);

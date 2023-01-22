@@ -6,9 +6,6 @@
 #include <fstream>
 #include <iostream>
 
-std::default_random_engine re;
-std::uniform_int_distribution<int> distrib{0, 9};
-
 int Attaquant::dribbler(Joueur& adversaire){
 
     int dribble = this->getDribble() + this->getVitesse() + this->getPhysique();
@@ -87,7 +84,6 @@ int Attaquant::tirer(Gardien& gardien){
     std::mt19937 gen(rd());
     std::uniform_int_distribution<> dis(0, 9);
     int choix = dis(gen);
-    std::cout << "aleatoire : " << choix << std::endl;
     if(diff > 0){
         if (choix > 0){
             return 1;
