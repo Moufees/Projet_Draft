@@ -85,8 +85,15 @@ int Attaquant::tirer(Gardien& gardien){
     int arret = gardien.getArret();
     int tir = this->getTir();
     int diff = tir - arret;
+    int aleatoire;
+    int choix;
+    std::ifstream a("aleatoire.txt");
+    a>>aleatoire;
+    for(int i=0; i<=aleatoire; i++){
+      choix=distrib(re);
+    }
     if(diff > 0){
-        if (distrib(re) > 0){
+        if (choix > 0){
             return 1;
         }
         else {
@@ -94,7 +101,7 @@ int Attaquant::tirer(Gardien& gardien){
         }
     }
     else if(diff == 0){
-        if (distrib(re) >= 5){
+        if (choix >= 5){
             return 1;
         }
         else {
@@ -102,7 +109,7 @@ int Attaquant::tirer(Gardien& gardien){
         }
     }
     else{
-          if (distrib(re)== 9){
+          if (choix== 9){
             return 1;
         }
         else {
