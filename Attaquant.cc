@@ -50,7 +50,7 @@ int Attaquant::dribbler(Joueur& adversaire){
       int diff = dribble - sortie;
       if(diff > 0){
         if (choix > 0){
-          return 1;
+          return 2;
         }
         else {
           return 0;
@@ -58,7 +58,7 @@ int Attaquant::dribbler(Joueur& adversaire){
       }
       else if(diff == 0){
         if (choix >= 5){
-          return 1;
+          return 2;
         }
         else {
           return 0;
@@ -66,7 +66,7 @@ int Attaquant::dribbler(Joueur& adversaire){
       }
       else{
         if (choix == 9){
-          return 1;
+          return 2;
         }
         else {
           return 0;
@@ -85,7 +85,7 @@ int Attaquant::tirer(Gardien& gardien){
     int choix = dis(gen);
     if(diff > 0){
         if (choix > 0){
-            return 1;
+            return 2;
         }
         else {
             return 0;
@@ -93,7 +93,7 @@ int Attaquant::tirer(Gardien& gardien){
     }
     else if(diff == 0){
         if (choix >= 5){
-            return 1;
+            return 2;
         }
         else {
             return 0;
@@ -101,7 +101,7 @@ int Attaquant::tirer(Gardien& gardien){
     }
     else{
           if (choix== 9){
-            return 1;
+            return 2;
         }
         else {
             return 0;

@@ -3,7 +3,7 @@
 #include "Gardien.hh"
 #include "Milieu.hh"
 
-void Joueur::passer(Joueur& coequipier, Ballon ballon){
+void Joueur::passer(Joueur& coequipier, Ballon& ballon){
     ballon.setJoueur(coequipier);
 }
 

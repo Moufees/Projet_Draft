@@ -1,4 +1,6 @@
 #include "Jeu.hh"
+#include "Joueur.hh"
+#include "Attaquant.hh"
 
 void Jeu::initList(std::ifstream& f){
     
@@ -112,4 +114,14 @@ void Jeu::ajoutEquipe1(Joueur* j){
 
 void Jeu::ajoutEquipe2(Joueur* j){
     Equipe2.push_back(j);
+    j->setPlacement(j->getPlacement()*-1);
+}
+
+void Jeu::gererscore(int valeur){
+    if (valeur == 2){
+        marquerEquipe1();
+    }
+    else if (valeur == -2){
+        marquerEquipe2();
+    }
 }

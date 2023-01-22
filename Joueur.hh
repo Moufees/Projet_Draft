@@ -17,7 +17,7 @@ public:
   int getPlacement() const {return _placement;};
   void setPlacement(int placement) {_placement = placement;};
   int getPasse() const {return _passe;};
-  void passer(Joueur& coequipier, Ballon ballon);
+  void passer(Joueur& coequipier, Ballon& ballon);
   virtual std::string poste() const = 0;
   virtual int getVitesse() const = 0;
   static Joueur* creerJoueur(std::vector<std::string> param);

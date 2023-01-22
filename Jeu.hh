@@ -27,6 +27,13 @@ class Jeu
     std::vector <Gardien*> getListeGardien() const {return listeGardien;};
     std::vector <Joueur*> getEquipe1() const {return Equipe1;};
     std::vector <Joueur*> getEquipe2() const {return Equipe2;};
+    int getScoreEquipe1() const {return scoreequipe1;};
+    int getScoreEquipe2() const {return scoreequipe2;};
+    void setScoreEquipe1(int s) {scoreequipe1=s;};
+    void setScoreEquipe2(int s) {scoreequipe2=s;};
+    void marquerEquipe1() {scoreequipe1++;};
+    void marquerEquipe2() {scoreequipe2++;};
+    void gererscore(int valeur);
     Attaquant* choixAttaquant() const;
     Milieu* choixMilieu() const;
     Defenseur* choixDefenseur() const;
@@ -43,6 +50,8 @@ class Jeu
     std::vector <Gardien*> listeGardien;
     std::vector <Joueur*> Equipe1;
     std::vector <Joueur*> Equipe2;
+    int scoreequipe1;
+    int scoreequipe2;
 };
 
 #endif
