@@ -3,14 +3,14 @@
 #include "Milieu.hh"
 #include "Attaquant.hh"
 #include <random>
+#include <chrono>
 #include <fstream>
 #include <iostream>
 
 int Attaquant::dribbler(Joueur& adversaire){
 
     int dribble = this->getDribble() + this->getVitesse() + this->getPhysique();
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<> dis(0, 9);
     int choix = dis(gen);
     std::cout << "aleatoire : " << choix << std::endl;
@@ -80,8 +80,7 @@ int Attaquant::tirer(Gardien& gardien){
     int arret = gardien.getArret();
     int tir = this->getTir();
     int diff = tir - arret;
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::mt19937 gen(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<> dis(0, 9);
     int choix = dis(gen);
     if(diff > 0){
