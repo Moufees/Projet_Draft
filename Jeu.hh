@@ -3,8 +3,13 @@
 
 #include <iostream>
 #include <string>
+#include <algorithm>
 #include <list>
+#include <vector>
+#include <chrono>
 #include <fstream>
+#include <iterator>
+#include <random>
 #include "utility.h"
 #include "Ballon.hh"
 #include "Gardien.hh"
@@ -13,19 +18,20 @@
 class Jeu
 {
     public:
-    Jeu(std::ifstream& f);
+    Jeu(std::ifstream& f){initList(f);};
     void deleteJoueurs();
-    std::list <Attaquant*> getListeAttaquant() const {return listeattaquant;};
-    std::list <Milieu*> getListeMilieu() const {return listemilieu;};
-    std::list <Defenseur*> getListeDefenseur() const {return listedefenseur;};
-    std::list <Gardien*> getListeGardien() const {return listegardien;};
-
+    void initList(std::ifstream& f);
+    std::vector <Attaquant*> getListeAttaquant() const {return listeAttaquant;};
+    std::vector <Milieu*> getListeMilieu() const {return listeMilieu;};
+    std::vector <Defenseur*> getListeDefenseur() const {return listeDefenseur;};
+    std::vector <Gardien*> getListeGardien() const {return listeGardien;};
+    void melangerListe();
 
     private:
-    std::list <Attaquant*> listeattaquant;
-    std::list <Milieu*> listemilieu;
-    std::list <Defenseur*> listedefenseur;
-    std::list <Gardien*> listegardien;
+    std::vector <Attaquant*> listeAttaquant;
+    std::vector <Milieu*> listeMilieu;
+    std::vector <Defenseur*> listeDefenseur;
+    std::vector <Gardien*> listeGardien;
 };
 
 #endif
