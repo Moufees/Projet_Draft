@@ -7,6 +7,9 @@
 #include "Attaquant.hh"
 #include "Defenseur.hh"
 #include "Milieu.hh"
+#include <list>
+#include "utility.h"
+
 
 Attaquant choixattaquant1(uint32_t choix){
     if (choix == 1) {
@@ -130,4 +133,49 @@ Gardien choixgardien(uint32_t choix){
     if (choix == 3){
         return Gardien("Alisson Becker", 10, 97, 92, 89);
     }
+}
+
+std::list <std::string> choixjoueur(std::ifstream& f){
+    std::string ligne;
+    std::list <std::string> listejoueur;
+     while (std::getline(f, ligne)){
+        listejoueur.push_back(Joueur::creerJoueur(split(ligne, ',')));
+    }
+    return listejoueur;
+}
+
+std::list <std::string> choixmilieu(std::ifstream& f){
+    std::string ligne;
+    std::list <std::string> listemilieu;
+     while (std::getline(f, ligne)){
+        listeattaquant.push_back(Joueur::creerJoueur(split(ligne, ';')));
+    }
+    return listemilieu;
+}
+
+std::list <std::string> choixattaquant(std::ifstream& f){
+    std::string ligne;
+    std::list <std::string> listeattaquant;
+     while (std::getline(f, ligne)){
+        listeattaquant.push_back(Joueur::creerJoueur(split(ligne, ';')));
+    }
+    return listeattaquant;
+}
+
+std::list <std::string> choixdefenseur(std::ifstream& f){
+    std::string ligne;
+    std::list <std::string> listeattaquant;
+     while (std::getline(f, ligne)){
+        listeattaquant.push_back(Joueur::creerJoueur(split(ligne, ';')));
+    }
+    return listeattaquant;
+}
+
+std::list <std::string> choixmilieu(std::ifstream& f){
+    std::string ligne;
+    std::list <std::string> listeattaquant;
+     while (std::getline(f, ligne)){
+        listeattaquant.push_back(Joueur::creerJoueur(split(ligne, ';')));
+    }
+    return listeattaquant;
 }*/
