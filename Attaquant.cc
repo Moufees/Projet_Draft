@@ -12,13 +12,11 @@ std::uniform_int_distribution<int> distrib{0, 9};
 int Attaquant::dribbler(Joueur& adversaire){
 
     int dribble = this->getDribble() + this->getVitesse() + this->getPhysique();
-    int aleatoire;
-    int choix;
-    std::ifstream a("aleatoire.txt");
-    a>>aleatoire;
-    for(int i=0; i<=aleatoire; i++){
-      choix=distrib(re);
-    }
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 9);
+    int choix = dis(gen);
+    std::cout << "aleatoire : " << choix << std::endl;
     if (dynamic_cast<Defenseur*>(&adversaire) != nullptr) {
       Defenseur* d = dynamic_cast<Defenseur*>(&adversaire);
       int defense = d->getDefense() + d->getVitesse() + d->getPhysique();
@@ -85,13 +83,11 @@ int Attaquant::tirer(Gardien& gardien){
     int arret = gardien.getArret();
     int tir = this->getTir();
     int diff = tir - arret;
-    int aleatoire;
-    int choix;
-    std::ifstream a("aleatoire.txt");
-    a>>aleatoire;
-    for(int i=0; i<=aleatoire; i++){
-      choix=distrib(re);
-    }
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<> dis(0, 9);
+    int choix = dis(gen);
+    std::cout << "aleatoire : " << choix << std::endl;
     if(diff > 0){
         if (choix > 0){
             return 1;
