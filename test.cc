@@ -75,6 +75,42 @@ int main()
         std::cout << g->getNom() << std::endl;
     }
 
+    std::cout << std::endl;
+
+
+    //Melanger les listes
+    cat.melangerListe();
+
+    //Afficher tous les attaquants
+    std::cout << "Attaquants :" << std::endl;
+    for (auto& a : cat.getListeAttaquant()) {
+        std::cout << a->getNom() << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    //Afficher tous les milieux
+    std::cout << "Milieux :" << std::endl;
+    for (auto& m : cat.getListeMilieu()) {
+        std::cout << m->getNom() << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    //Afficher tous les defenseurs
+    std::cout << "Defenseurs :" << std::endl;
+    for (auto& d : cat.getListeDefenseur()) {
+        std::cout << d->getNom() << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    //Afficher tous les gardiens
+    std::cout << "Gardiens :" << std::endl;
+    for (auto& g : cat.getListeGardien()) {
+        std::cout << g->getNom() << std::endl;
+    }
+
     //delete all the players
     for (auto& a : cat.getListeAttaquant()) {
         delete a;
