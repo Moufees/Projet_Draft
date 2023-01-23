@@ -51,7 +51,7 @@ int main()
     //Afficher tous les milieux
     std::cout << "Milieux :" << std::endl;
     for (auto& m : cat.getListeMilieu()) {
-        std::cout << m->getNom() << std::endl;
+        std::cout << m->getNom() << std::endl; 
     }
 
     std::cout << std::endl;
