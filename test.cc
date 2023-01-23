@@ -75,37 +75,82 @@ int main()
 
     //Melanger les listes
     cat.melangerListe();
-
+    int choix;
     //Choisir un attaquant au hasard et on enleve le joueur choisi de la liste pour l'équipe 1
-    Attaquant* attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquant(attaquant, 1);
-    Ballon b(1, attaquant);
-    std::cout << "Attaquant choisi au hasard :" << std::endl;
-    std::cout << attaquant->getNom() << std::endl;
-    cat.supprimerJoueur(attaquant->getNom());
+    Attaquant* attaquant1 = cat.choixAttaquant();
+    std::cout << "Attaquant1 choisi au hasard :" << std::endl;
+    std::cout << attaquant1->getNom() << std::endl;
+    
 
-    attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquant(attaquant, 1);
-    std::cout << "Attaquant choisi au hasard :" << std::endl;
-    std::cout << attaquant->getNom() << std::endl;
-    cat.supprimerJoueur(attaquant->getNom());
+    Attaquant* attaquant2 = cat.choixAttaquant();
+    std::cout << "Attaquant2 choisi au hasard :" << std::endl;
+    std::cout << attaquant2->getNom() << std::endl;
+    
 
-    attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquant(attaquant, 1);
-    std::cout << "Attaquant choisi au hasard :" << std::endl;
-    std::cout << attaquant->getNom() << std::endl;
-    cat.supprimerJoueur(attaquant->getNom());
+    Attaquant* attaquant3 = cat.choixAttaquant();
+    std::cout << "Attaquant3 choisi au hasard :" << std::endl;
+    std::cout << attaquant3->getNom() << std::endl;
+
+    std::cout << "Choisissez votre attaquant" << std::endl;
+    Ballon b(1, attaquant1);
+    scanf ( "%d" ,&choix);
+    if (choix == 1){
+        cat.ajoutAttaquant(attaquant1, 1);
+        b.setJoueur(*attaquant1);
+        cat.supprimerJoueur(attaquant2->getNom());
+        cat.supprimerJoueur(attaquant3->getNom());
+    }
+    else if (choix == 2){
+        cat.ajoutAttaquant(attaquant2, 1);
+        b.setJoueur(*attaquant2);
+        cat.supprimerJoueur(attaquant1->getNom());
+        cat.supprimerJoueur(attaquant3->getNom());
+    }
+    else if (choix == 3){
+        b.setJoueur(*attaquant3);
+        cat.ajoutAttaquant(attaquant3, 1);
+        cat.supprimerJoueur(attaquant1->getNom());
+        cat.supprimerJoueur(attaquant2->getNom());
+    }
+    else{
+        std::cout << "Choix invalide" << std::endl;
+    }
 
     //Choisir un attaquant au hasard et on enleve le joueur choisi de la liste pour l'équipe 2
-    attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquant(attaquant, 2);
-    std::cout << "Attaquant choisi au hasard :" << std::endl;
-    std::cout << attaquant->getNom() << std::endl;
-    cat.supprimerJoueur(attaquant->getNom());
+    attaquant1 = cat.choixAttaquant();
+    std::cout << "Attaquant1 choisi au hasard :" << std::endl;
+    std::cout << attaquant1->getNom() << std::endl;
+    
 
+    attaquant2 = cat.choixAttaquant();
+    std::cout << "Attaquant2 choisi au hasard :" << std::endl;
+    std::cout << attaquant2->getNom() << std::endl;
+    
 
+    attaquant3 = cat.choixAttaquant();
+    std::cout << "Attaquant3 choisi au hasard :" << std::endl;
+    std::cout << attaquant3->getNom() << std::endl;
 
-    std::cout << std::endl;
+    std::cout << "Choisissez votre attaquant" << std::endl;
+    scanf ( "%d" ,&choix);
+    if (choix == 1){
+        cat.ajoutAttaquant(attaquant1, 2);
+        cat.supprimerJoueur(attaquant2->getNom());
+        cat.supprimerJoueur(attaquant3->getNom());
+    }
+    else if (choix == 2){
+        cat.ajoutAttaquant(attaquant2, 2);
+        cat.supprimerJoueur(attaquant1->getNom());
+        cat.supprimerJoueur(attaquant3->getNom());
+    }
+    else if (choix == 3){
+        cat.ajoutAttaquant(attaquant3, 2);
+        cat.supprimerJoueur(attaquant1->getNom());
+        cat.supprimerJoueur(attaquant2->getNom());
+    }
+    else{
+        std::cout << "Choix invalide" << std::endl;
+    }
 
     //Choisir un milieu au hasard et on enleve le joueur choisi de la liste pour l'équipe 1
     Milieu* milieu = cat.choixMilieu();
@@ -231,6 +276,8 @@ int main()
     //std::cout << cat.getAttaquantEquipe1[0]->getNom()<< std::endl;
     std::cout << cat.getAttaquant(2)[0]->dribbler(*cat.getAttaquant(1)[0]) << std::endl;
     std::cout << cat.getAttaquant(1)[0]->tirer(*cat.getGardien(2))   << std::endl;
+    //int tour =0;
+
     cat.deleteJoueurs();
 
     return 0;
