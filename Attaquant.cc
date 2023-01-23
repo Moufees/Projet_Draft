@@ -9,6 +9,8 @@
 
 int Attaquant::dribbler(Joueur& adversaire){
 
+    std::cout << getNom() << " dribble " << adversaire.getNom() << std::endl;
+
     int dribble = this->getDribble() + this->getVitesse() + this->getPhysique();
     std::mt19937 gen(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<> dis(0, 9);
@@ -77,6 +79,9 @@ int Attaquant::dribbler(Joueur& adversaire){
 }
 
 int Attaquant::tirer(Gardien& gardien){
+
+    std::cout << getNom() << " tire sur " << gardien.getNom() << std::endl;
+
     int arret = gardien.getArret();
     int tir = this->getTir();
     int diff = tir - arret;

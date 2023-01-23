@@ -78,42 +78,30 @@ int main()
 
     //Choisir un attaquant au hasard et on enleve le joueur choisi de la liste pour l'équipe 1
     Attaquant* attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquantEquipe1(attaquant);
+    cat.ajoutAttaquant(attaquant, 1);
     Ballon b(1, attaquant);
     std::cout << "Attaquant choisi au hasard :" << std::endl;
     std::cout << attaquant->getNom() << std::endl;
     cat.supprimerJoueur(attaquant->getNom());
 
     attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquantEquipe1(attaquant);
+    cat.ajoutAttaquant(attaquant, 1);
     std::cout << "Attaquant choisi au hasard :" << std::endl;
     std::cout << attaquant->getNom() << std::endl;
     cat.supprimerJoueur(attaquant->getNom());
 
     attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquantEquipe1(attaquant);
+    cat.ajoutAttaquant(attaquant, 1);
     std::cout << "Attaquant choisi au hasard :" << std::endl;
     std::cout << attaquant->getNom() << std::endl;
     cat.supprimerJoueur(attaquant->getNom());
 
     //Choisir un attaquant au hasard et on enleve le joueur choisi de la liste pour l'équipe 2
     attaquant = cat.choixAttaquant();
-    cat.ajoutAttaquantEquipe2(attaquant);
+    cat.ajoutAttaquant(attaquant, 2);
     std::cout << "Attaquant choisi au hasard :" << std::endl;
     std::cout << attaquant->getNom() << std::endl;
     cat.supprimerJoueur(attaquant->getNom());
-
-    /*attaquant = cat.choixAttaquant();
-    cat.ajoutEquipe2(attaquant);
-    std::cout << "Attaquant choisi au hasard :" << std::endl;
-    std::cout << attaquant->getNom() << std::endl;
-    cat.supprimerJoueur(attaquant->getNom());
-
-    attaquant = cat.choixAttaquant();
-    cat.ajoutEquipe2(attaquant);
-    std::cout << "Attaquant choisi au hasard :" << std::endl;
-    std::cout << attaquant->getNom() << std::endl;
-    cat.supprimerJoueur(attaquant->getNom());*/
 
 
 
@@ -121,96 +109,48 @@ int main()
 
     //Choisir un milieu au hasard et on enleve le joueur choisi de la liste pour l'équipe 1
     Milieu* milieu = cat.choixMilieu();
-    cat.ajoutMilieuEquipe1(milieu);
+    cat.ajoutMilieu(milieu, 1);
     std::cout << "Milieu choisi au hasard :" << std::endl;
     std::cout << milieu->getNom() << std::endl;
     cat.supprimerJoueur(milieu->getNom());
-
-    /*milieu = cat.choixMilieu();
-    cat.ajoutEquipe1(milieu);
-    std::cout << "Milieu choisi au hasard :" << std::endl;
-    std::cout << milieu->getNom() << std::endl;
-    cat.supprimerJoueur(milieu->getNom());
-
-    milieu = cat.choixMilieu();
-    cat.ajoutEquipe1(milieu);
-    std::cout << "Milieu choisi au hasard :" << std::endl;
-    std::cout << milieu->getNom() << std::endl;
-    cat.supprimerJoueur(milieu->getNom());*/
 
     //Choisir un milieu au hasard et on enleve le joueur choisi de la liste pour l'équipe 2
 
     milieu = cat.choixMilieu();
-    cat.ajoutMilieuEquipe2(milieu);
+    cat.ajoutMilieu(milieu, 2);
     std::cout << "Milieu choisi au hasard :" << std::endl;
     std::cout << milieu->getNom() << std::endl;
     cat.supprimerJoueur(milieu->getNom());
-
-    /*milieu = cat.choixMilieu();
-    cat.ajoutEquipe2(milieu);
-    std::cout << "Milieu choisi au hasard :" << std::endl;
-    std::cout << milieu->getNom() << std::endl;
-    cat.supprimerJoueur(milieu->getNom());
-
-    milieu = cat.choixMilieu();
-    cat.ajoutEquipe2(milieu);
-    std::cout << "Milieu choisi au hasard :" << std::endl;
-    std::cout << milieu->getNom() << std::endl;
-    cat.supprimerJoueur(milieu->getNom());*/
 
     std::cout << std::endl;
 
     //Choisir un defenseur au hasard et on enleve le joueur choisi de la liste pour l'équipe 1
     Defenseur* defenseur = cat.choixDefenseur();
-    cat.ajoutDefenseurEquipe1(defenseur);
+    cat.ajoutDefenseur(defenseur, 1);
     std::cout << "Defenseur choisi au hasard :" << std::endl;
     std::cout << defenseur->getNom() << std::endl;
     cat.supprimerJoueur(defenseur->getNom());
-
-    /*defenseur = cat.choixDefenseur();
-    cat.ajoutEquipe1(defenseur);
-    std::cout << "Defenseur choisi au hasard :" << std::endl;
-    std::cout << defenseur->getNom() << std::endl;
-    cat.supprimerJoueur(defenseur->getNom());
-
-    defenseur = cat.choixDefenseur();
-    cat.ajoutEquipe1(defenseur);
-    std::cout << "Defenseur choisi au hasard :" << std::endl;
-    std::cout << defenseur->getNom() << std::endl;
-    cat.supprimerJoueur(defenseur->getNom());*/
 
     //Choisir un defenseur au hasard et on enleve le joueur choisi de la liste pour l'équipe 2
     defenseur = cat.choixDefenseur();
-    cat.ajoutDefenseurEquipe2(defenseur);
+    cat.ajoutDefenseur(defenseur, 2);
     std::cout << "Defenseur choisi au hasard :" << std::endl;
     std::cout << defenseur->getNom() << std::endl;
     cat.supprimerJoueur(defenseur->getNom());
-
-    /*defenseur = cat.choixDefenseur();
-    cat.ajoutEquipe2(defenseur);
-    std::cout << "Defenseur choisi au hasard :" << std::endl;
-    std::cout << defenseur->getNom() << std::endl;
-    cat.supprimerJoueur(defenseur->getNom());
-
-    defenseur = cat.choixDefenseur();
-    cat.ajoutEquipe2(defenseur);
-    std::cout << "Defenseur choisi au hasard :" << std::endl;
-    std::cout << defenseur->getNom() << std::endl;
-    cat.supprimerJoueur(defenseur->getNom());*/
 
 
     std::cout << std::endl;
 
     //Choisir un gardien au hasard et on enleve le joueur choisi de la liste pour l'équipe 1
     Gardien* gardien = cat.choixGardien();
-    cat.setGardienEquipe1(gardien);
+    cat.setGardien(gardien, 1);
     std::cout << "Gardien choisi au hasard :" << std::endl;
     std::cout << gardien->getNom() << std::endl;
     cat.supprimerJoueur(gardien->getNom());
 
     //Choisir un gardien au hasard et on enleve le joueur choisi de la liste pour l'équipe 2
     gardien = cat.choixGardien();
-    cat.setGardienEquipe2(gardien);
+    cat.setGardien(gardien, 2);
     std::cout << "Gardien choisi au hasard :" << std::endl;
     std::cout << gardien->getNom() << std::endl;
     cat.supprimerJoueur(gardien->getNom());
@@ -251,31 +191,31 @@ int main()
 
     //afficher les joueurs de l'equipe 1
     std::cout << "Equipe 1 :" << std::endl;
-    for (auto& e : cat.getAttaquantEquipe1()) {
+    for (auto& e : cat.getAttaquant(1)) {
         std::cout << e->getNom() << std::endl;
     }
-    for (auto& e : cat.getMilieuEquipe1()) {
+    for (auto& e : cat.getMilieu(1)) {
         std::cout << e->getNom() << std::endl;
     }
-    for (auto& e : cat.getDefenseurEquipe1()) {
+    for (auto& e : cat.getDefenseur(1)) {
         std::cout << e->getNom() << std::endl;
     }
-    std::cout<<cat.getGardienEquipe1()->getNom()<<std::endl;
+    std::cout<<cat.getGardien(1)->getNom()<<std::endl;
 
     std::cout << std::endl;
 
     //afficher les joueurs de l'equipe 2
     std::cout << "Equipe 2 :" << std::endl; 
-    for (auto& e : cat.getAttaquantEquipe2()) {
+    for (auto& e : cat.getAttaquant(2)) {
         std::cout << e->getNom() << std::endl;
     }
-    for (auto& e : cat.getMilieuEquipe2()) {
+    for (auto& e : cat.getMilieu(2)) {
         std::cout << e->getNom() << std::endl;
     }
-    for (auto& e : cat.getDefenseurEquipe2()) {
+    for (auto& e : cat.getDefenseur(2)) {
         std::cout << e->getNom() << std::endl;
     }
-    std::cout << cat.getGardienEquipe2()->getNom() << std::endl;
+    std::cout << cat.getGardien(2)->getNom() << std::endl;
     std::cout << std::endl;
 
     //aficher le possesseur du ballon
@@ -289,8 +229,8 @@ int main()
     std::cout << "Possesseur du ballon :" << std::endl;
     //std::cout << championsleague.getJoueur()->getNom() << std::endl;
     //std::cout << cat.getAttaquantEquipe1[0]->getNom()<< std::endl;
-    std::cout << cat.getAttaquantEquipe2()[0]->dribbler(*cat.getAttaquantEquipe1()[0]) << std::endl;
-    std::cout << cat.getAttaquantEquipe1()[0]->tirer(*cat.getGardienEquipe2())   << std::endl;
+    std::cout << cat.getAttaquant(2)[0]->dribbler(*cat.getAttaquant(1)[0]) << std::endl;
+    std::cout << cat.getAttaquant(1)[0]->tirer(*cat.getGardien(2))   << std::endl;
     cat.deleteJoueurs();
 
     return 0;

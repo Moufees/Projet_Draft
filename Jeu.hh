@@ -21,20 +21,30 @@ class Jeu
     Jeu(std::ifstream& f){initList(f);};
     void deleteJoueurs();
     void initList(std::ifstream& f);
+
+    // Liste des joueurs
     std::vector <Attaquant*> getListeAttaquant() const {return listeAttaquant;};
     std::vector <Milieu*> getListeMilieu() const {return listeMilieu;};
     std::vector <Defenseur*> getListeDefenseur() const {return listeDefenseur;};
     std::vector <Gardien*> getListeGardien() const {return listeGardien;};
-    std::vector <Attaquant*> getAttaquantEquipe1() const {return attaquantEquipe1;};
-    std::vector <Attaquant*> getAttaquantEquipe2() const {return attaquantEquipe2;};
-    std::vector <Milieu*> getMilieuEquipe1() const {return milieuEquipe1;};
-    std::vector <Milieu*> getMilieuEquipe2() const {return milieuEquipe2;};
-    std::vector <Defenseur*> getDefenseurEquipe1() const {return defenseurEquipe1;};
-    std::vector <Defenseur*> getDefenseurEquipe2() const {return defenseurEquipe2;};
-    Gardien* getGardienEquipe1() const {return gardienEquipe1;};
-    Gardien* getGardienEquipe2() const {return gardienEquipe2;};
-    void setGardienEquipe1(Gardien* g) {gardienEquipe1=g;};
-    void setGardienEquipe2(Gardien* g) {gardienEquipe2=g;};
+
+    // Liste des joueurs de chaque équipe
+    std::vector <Attaquant*> getAttaquant(int numEquipe) const {if (numEquipe == 1) return attaquantEquipe1;
+                                                                else return attaquantEquipe2;};
+
+    std::vector <Milieu*> getMilieu(int numEquipe) const {  if (numEquipe == 1) return milieuEquipe1;
+                                                            else return milieuEquipe2;};
+
+    std::vector <Defenseur*> getDefenseur(int numEquipe) const {if (numEquipe == 1) return defenseurEquipe1;
+                                                                else return defenseurEquipe2;};
+
+    Gardien* getGardien(int numEquipe) const {  if (numEquipe == 1) return gardienEquipe1;
+                                                else return gardienEquipe2;};
+
+    
+    //
+    void setGardien(Gardien* g, int numEquipe) {if (numEquipe == 1) gardienEquipe1 = g;
+                                                else gardienEquipe2 = g;};
     int getScoreEquipe1() const {return scoreequipe1;};
     int getScoreEquipe2() const {return scoreequipe2;};
     void setScoreEquipe1(int s) {scoreequipe1=s;};
@@ -42,16 +52,15 @@ class Jeu
     void marquerEquipe1() {scoreequipe1++;};
     void marquerEquipe2() {scoreequipe2++;};
     void gererscore(int valeur);
+
     Attaquant* choixAttaquant() const;
     Milieu* choixMilieu() const;
     Defenseur* choixDefenseur() const;
     Gardien* choixGardien() const;
-    void ajoutAttaquantEquipe1(Attaquant* j);
-    void ajoutAttaquantEquipe2(Attaquant* j);
-    void ajoutMilieuEquipe1(Milieu* j);
-    void ajoutMilieuEquipe2(Milieu* j);
-    void ajoutDefenseurEquipe1(Defenseur* j);
-    void ajoutDefenseurEquipe2(Defenseur* j);
+    
+    void ajoutAttaquant(Attaquant* j, int numEquipe);
+    void ajoutMilieu(Milieu* j, int numEquipe);
+    void ajoutDefenseur(Defenseur* j, int numEquipe);
     void supprimerJoueur(std::string nom);
     void melangerListe();
 
