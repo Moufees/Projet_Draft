@@ -108,12 +108,29 @@ void Jeu::supprimerJoueur(std::string nom){
     }
 }
 
-void Jeu::ajoutEquipe1(Joueur* j){
-    Equipe1.push_back(j);
+void Jeu::ajoutAttaquantEquipe1(Attaquant* j){
+    attaquantEquipe1.push_back(j);
 }
 
-void Jeu::ajoutEquipe2(Joueur* j){
-    Equipe2.push_back(j);
+void Jeu::ajoutAttaquantEquipe2(Attaquant* j){
+    attaquantEquipe2.push_back(j);
+    j->setPlacement(j->getPlacement()*-1);
+}
+
+void Jeu::ajoutMilieuEquipe1(Milieu* j){
+    milieuEquipe1.push_back(j);
+}
+
+void Jeu::ajoutMilieuEquipe2(Milieu* j){
+    milieuEquipe2.push_back(j);
+    j->setPlacement(j->getPlacement()*-1);
+}
+void Jeu::ajoutDefenseurEquipe1(Defenseur* j){
+    defenseurEquipe1.push_back(j);
+}
+
+void Jeu::ajoutDefenseurEquipe2(Defenseur* j){
+    defenseurEquipe2.push_back(j);
     j->setPlacement(j->getPlacement()*-1);
 }
 
