@@ -2,13 +2,19 @@
 #include "Joueur.hh"
 #include "Attaquant.hh"
 
-void Jeu::initList(std::ifstream& f){
+void Jeu::initList(){
+
+    std::ifstream f("basedejoueurs.csv");
+
+    //Suppression des joueurs précédents
+    this->deleteJoueurs();
     
     listeAttaquant.clear();
     listeMilieu.clear();
     listeDefenseur.clear();
     listeGardien.clear();
     std::string ligne;
+    std::cout << "Initialisation des joueurs" << std::endl;
     std::vector <std::string> temporaire;
     while (std::getline(f, ligne)){
         temporaire=split(ligne, ',');
@@ -107,6 +113,23 @@ void Jeu::supprimerJoueur(std::string nom){
         }
     }
 }
+
+//Ajoute un joueur à la liste en fonction de son poste
+void Jeu::ajouterJoueur(Joueur* j){
+    if (j->poste() == "Attaquant"){
+        listeAttaquant.push_back((dynamic_cast<Attaquant*>(j)));
+    }
+    else if (j->poste() == "Milieu"){
+        listeMilieu.push_back((dynamic_cast<Milieu*>(j)));
+    }
+    else if (j->poste() == "Defenseur"){
+        listeDefenseur.push_back((dynamic_cast<Defenseur*>(j)));
+    }
+    else if (j->poste() == "Gardien"){
+        listeGardien.push_back((dynamic_cast<Gardien*>(j)));
+    }
+}
+
 
 void Jeu::ajoutAttaquant(Attaquant* j, int equipe){
     if (equipe == 1){

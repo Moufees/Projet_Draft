@@ -4,6 +4,7 @@
 #include "Milieu.hh"
 
 void Joueur::passer(Joueur& coequipier, Ballon& ballon){
+    std::cout << getNom() << " passe a " << coequipier.getNom() << std::endl;
     ballon.setJoueur(coequipier);
 }
 

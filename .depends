@@ -1,7 +1,9 @@
 Attaquant.o: Attaquant.cc Ballon.hh Joueur.hh Gardien.hh Milieu.hh \
  Attaquant.hh JoueurDeChamp.hh Defenseur.hh
-ChoixJoueur.o: ChoixJoueur.cc
+Jeu.o: Jeu.cc Jeu.hh utility.h Ballon.hh Joueur.hh Gardien.hh Milieu.hh \
+ Attaquant.hh JoueurDeChamp.hh Defenseur.hh
 Joueur.o: Joueur.cc Ballon.hh Joueur.hh Gardien.hh Milieu.hh Attaquant.hh \
  JoueurDeChamp.hh Defenseur.hh
 test.o: test.cc Ballon.hh Joueur.hh Milieu.hh Attaquant.hh \
  JoueurDeChamp.hh Gardien.hh Defenseur.hh Jeu.hh utility.h
+utility.o: utility.cc utility.h

@@ -15,12 +15,10 @@ int Attaquant::dribbler(Joueur& adversaire){
     std::mt19937 gen(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<> dis(0, 9);
     int choix = dis(gen);
-    std::cout << "aleatoire : " << choix << std::endl;
     if (dynamic_cast<Defenseur*>(&adversaire) != nullptr) {
       Defenseur* d = dynamic_cast<Defenseur*>(&adversaire);
       int defense = d->getDefense() + d->getVitesse() + d->getPhysique();
       int diff = dribble - defense;
-      //std::cout<<choix<< std::endl;
       if(diff > 0){
         if (choix> 0){
           return 1;
@@ -48,7 +46,7 @@ int Attaquant::dribbler(Joueur& adversaire){
     }
     else if (dynamic_cast<Gardien*>(&adversaire) != nullptr) {
       Gardien* g = dynamic_cast<Gardien*>(&adversaire);
-      int sortie = g->getSortie();
+      int sortie = g->getSortie()*3;
       int diff = dribble - sortie;
       if(diff > 0){
         if (choix > 0){

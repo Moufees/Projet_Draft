@@ -18,15 +18,20 @@
 class Jeu
 {
     public:
-    Jeu(std::ifstream& f){initList(f);};
+    Jeu(){initList();};
     void deleteJoueurs();
-    void initList(std::ifstream& f);
+    void initList();
+    void melangerListe();
 
     // Liste des joueurs
     std::vector <Attaquant*> getListeAttaquant() const {return listeAttaquant;};
     std::vector <Milieu*> getListeMilieu() const {return listeMilieu;};
     std::vector <Defenseur*> getListeDefenseur() const {return listeDefenseur;};
     std::vector <Gardien*> getListeGardien() const {return listeGardien;};
+    void supprimerJoueur(std::string nom);
+
+    // Ajoute à la liste selon le poste du joueur
+    void ajouterJoueur(Joueur* j);
 
     // Liste des joueurs de chaque équipe
     std::vector <Attaquant*> getAttaquant(int numEquipe) const {if (numEquipe == 1) return attaquantEquipe1;
@@ -61,8 +66,6 @@ class Jeu
     void ajoutAttaquant(Attaquant* j, int numEquipe);
     void ajoutMilieu(Milieu* j, int numEquipe);
     void ajoutDefenseur(Defenseur* j, int numEquipe);
-    void supprimerJoueur(std::string nom);
-    void melangerListe();
 
     private:
     std::vector <Attaquant*> listeAttaquant;

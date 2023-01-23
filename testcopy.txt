@@ -1,4 +1,4 @@
-#include "Ballon.hh"
+/*#include "Ballon.hh"
 #include "Milieu.hh"
 #include "Gardien.hh"
 #include "Jeu.hh"
@@ -8,6 +8,30 @@
 int main()
 {
     Jeu cat;
+    
+    a1.dribbler(d);
+    a1.dribbler(d);
+    a1.dribbler(d);
+    a1.dribbler(d);
+    a1.dribbler(d);
+    a1.dribbler(d);
+    a1.dribbler(d);
+    std::cout << a1.poste() << std::endl;
+    std::cout << g.poste() << std::endl;
+    std::cout << m1.poste() << std::endl;
+    std::cout << m2.poste() << std::endl;
+    std::cout << m2.getVitesse() << std::endl;
+    std::cout << d.poste() << std::endl;
+    std::cout << a1.dribbler(d) << std::endl;
+    std::cout << a2.dribbler(d) << std::endl;
+    std::cout << a3.dribbler(d) << std::endl;
+    std::cout << a1.dribbler(g) << std::endl;
+    std::cout << a1.tirer(g) << std::endl;
+    std::cout << a2.tirer(g) << std::endl;
+    std::cout << a3.tirer(g) << std::endl;
+    std::cout << a1.dribbler(static_cast<Defenseur&>(m1)) << std::endl;
+    std::cout << m2.dribbler(static_cast<Defenseur&>(m1)) << std::endl;
+    
 
     //Afficher tous les attaquants
     std::cout << "Attaquants :" << std::endl;
@@ -69,18 +93,22 @@ int main()
     cat.supprimerJoueur(attaquant3->getNom());
 
     std::cout << "Choisissez votre attaquant" << std::endl;
+    Ballon b(1, attaquant1);
     scanf ( "%d" ,&choix);
     if (choix == 1){
         cat.ajoutAttaquant(attaquant1, 1);
+        b.setJoueur(*attaquant1);
         cat.ajouterJoueur(attaquant2);
         cat.ajouterJoueur(attaquant3);
     }
     else if (choix == 2){
         cat.ajoutAttaquant(attaquant2, 1);
+        b.setJoueur(*attaquant2);
         cat.ajouterJoueur(attaquant1);
         cat.ajouterJoueur(attaquant3);
     }
     else if (choix == 3){
+        b.setJoueur(*attaquant3);
         cat.ajoutAttaquant(attaquant3, 1);
         cat.ajouterJoueur(attaquant1);
         cat.ajouterJoueur(attaquant2);
@@ -251,91 +279,22 @@ int main()
     std::cout << cat.getGardien(2)->getNom() << std::endl;
     std::cout << std::endl;
 
-    Ballon b(0, cat.getGardien(1));
-
     //aficher le possesseur du ballon
     std::cout << "Possesseur du ballon :" << std::endl;
     std::cout << b.getJoueur()->getNom() << std::endl;
 
     //faire la passe
-    std::cout << "Passe au defenseur :" << std::endl;
-    b.getJoueur()->passer(*cat.getDefenseur(1)[0], b);
+    std::cout << "Passe :" << std::endl;
 
     //aficher le possesseur du ballon
     std::cout << "Possesseur du ballon :" << std::endl;
-    std::cout << b.getJoueur()->getNom() << std::endl;
-
-    //faire la passe
-    std::cout << "Passe au milieu :" << std::endl;
-    b.getJoueur()->passer(*cat.getMilieu(1)[0], b);
-
-    //aficher le possesseur du ballon
-    std::cout << "Possesseur du ballon :" << std::endl;
-    std::cout << b.getJoueur()->getNom() << std::endl;
-
-    //dribbler le milieu adverse
-    int go = 0;
-    std::cout << "Dribble du milieu adverse :" << std::endl;
-    if(dynamic_cast<Attaquant*>(b.getJoueur())->dribbler(*cat.getMilieu(2)[0])) {
-        std::cout << "Dribble reussi" << std::endl;
-        go = 1;
-    }
-    else {
-        std::cout << "Dribble echoue" << std::endl;
-    }
-
-    //faire la passe
-    if (go) {
-        std::cout << "Passe a l'attaquant :" << std::endl;
-        b.getJoueur()->passer(*cat.getAttaquant(1)[0], b);
-        //aficher le possesseur du ballon
-        std::cout << "Possesseur du ballon :" << std::endl;
-        std::cout << b.getJoueur()->getNom() << std::endl;
-        std::cout << std::endl;
-        go = 0;
-        std::cout << "Dribble du defenseur adverse :" << std::endl;
-        if (dynamic_cast<Attaquant*>(b.getJoueur())->dribbler(*cat.getDefenseur(2)[0])) {
-            std::cout << "Dribble reussi" << std::endl;
-            go = 1;
-        }
-        else {
-            std::cout << "Dribble echoue" << std::endl;
-        }
-
-        if(go){
-            std::cout << "Tirer ou dribbler :" << std::endl;
-            scanf("%d", &choix);
-            if (choix == 1) {
-                std::cout << "Tirer :" << std::endl;
-                if (dynamic_cast<Attaquant*>(b.getJoueur())->tirer(*cat.getGardien(2))) {
-                    std::cout << "Tir reussi" << std::endl;
-                }
-                else {
-                    std::cout << "Tir echoue" << std::endl;
-                    go = 0;
-                }
-            }
-            else {
-                std::cout << "Dribble :" << std::endl;
-                if (dynamic_cast<Attaquant*>(b.getJoueur())->dribbler(*cat.getGardien(2))) {
-                    std::cout << "Dribble reussi" << std::endl;
-                }
-                else {
-                    std::cout << "Dribble echoue" << std::endl;
-                    go = 0;
-                }
-            }
-        }
-    }
-
-    if(go){
-        std::cout << "Gagne !!" << std::endl;
-    }
-    else {
-        std::cout << "Perdu !!" << std::endl;
-    }
+    //std::cout << championsleague.getJoueur()->getNom() << std::endl;
+    //std::cout << cat.getAttaquantEquipe1[0]->getNom()<< std::endl;
+    std::cout << cat.getAttaquant(2)[0]->dribbler(*cat.getAttaquant(1)[0]) << std::endl;
+    std::cout << cat.getAttaquant(1)[0]->tirer(*cat.getGardien(2))   << std::endl;
+    //int tour =0;
 
     cat.deleteJoueurs();
 
     return 0;
-}
+}*/
