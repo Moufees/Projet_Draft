@@ -13,7 +13,7 @@
 // Constantes du programme
 const int WIN_WIDTH = 1600;
 const int WIN_HEIGHT = 968;
-const float COEF_ECRAN = 0.8;
+const float COEF_ECRAN = 0.75;
 const int TAILLE_POLICE_JOUEUR = 12;
 
 class Application
