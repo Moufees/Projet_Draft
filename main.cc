@@ -6,19 +6,15 @@
 
 
 // Fonction main, point de d�part du programme
-/*int main()
+int main()
 {
 	// Lancement de l'application
 	Application app;
 	app.Run();
-	//Jeu jeu;
-
-	//On affiche tous les joueurs
-	//jeu.afficherJoueurs();
 
     
     return 0;
-}*/
+}
 
 /*TEST_CASE("1: Attaquant")
 {
