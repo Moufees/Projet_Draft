@@ -3,11 +3,13 @@
 #include "Gardien.hh"
 #include "Milieu.hh"
 
+// La ballon pointe vers le coequipier
 void Joueur::passer(Joueur& coequipier, Ballon& ballon){
     //std::cout << getNom() << " passe a " << coequipier.getNom() << std::endl;
     ballon.setJoueur(coequipier);
 }
 
+// Retourne un pointeur vers un joueur créé à partir d'un vecteur de paramètres
 Joueur* Joueur::creerJoueur(std::vector<std::string> param)
 {
    if (param[0] == "Attaquant"){
@@ -33,6 +35,7 @@ Joueur* Joueur::creerJoueur(std::vector<std::string> param)
     return NULL;
 }
 
+// Retourne une chaîne de caractères contenant les informations du joueur
 std::string Joueur::toCSV() const{
     std::string csv = "";
     csv += getNom() + " (" + poste() + ")" + "\n";
@@ -41,6 +44,7 @@ std::string Joueur::toCSV() const{
     return csv;
 }
 
+// Surcharge de l'opérateur << pour afficher les informations du joueur
 std::ostream& operator<<(std::ostream& os, const Joueur& joueur){
     os << joueur.toCSV();
     return os;

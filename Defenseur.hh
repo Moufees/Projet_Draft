@@ -8,6 +8,7 @@ public:
   ~Defenseur() {};
   std::string poste() const {return "Defenseur";};
   int getDefense() const {return _defense;};
+  // On surcharge la méthode toCSV() de JoueurDeChamp pour ajouter la défense
   std::string toCSV() const{
     std::string csv = JoueurDeChamp::toCSV();
     csv += "Defense : " + std::to_string(_defense) + "\n";

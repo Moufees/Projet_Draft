@@ -8,6 +8,7 @@ public:
   ~JoueurDeChamp() {};
   int getVitesse() const {return _vitesse;};
   int getPhysique() const {return _physique;};
+  // On surcharge la méthode toCSV() de Joueur pour ajouter la vitesse et la physique
   std::string toCSV() const{
     std::string csv = Joueur::toCSV();
     csv += "Vitesse : " + std::to_string(_vitesse) + "\n";

@@ -2,6 +2,7 @@
 #include "Joueur.hh"
 #include "Attaquant.hh"
 
+// On initialise la liste des joueurs
 void Jeu::initList(){
 
     std::ifstream f("cartes/basedejoueurs.csv");
@@ -34,6 +35,7 @@ void Jeu::initList(){
    
 }
 
+// On supprime les joueurs précédents de chaque equipe
 void Jeu::deleteEquipe() {
     // Suppression des joueurs précédents
 	for (auto it = attaquantEquipe1.begin(); it != attaquantEquipe1.end(); it++){
@@ -71,6 +73,8 @@ void Jeu::deleteEquipe() {
     gardienEquipe2.clear();
 }
 
+
+// On supprime tous les joueurs
 void Jeu::deleteJoueurs(){
     for (auto it = listeAttaquant.begin(); it != listeAttaquant.end(); it++){
         delete *it;
@@ -90,6 +94,7 @@ void Jeu::deleteJoueurs(){
 	listeGardien.clear();
 }
 
+// On mélange les listes de joueurs
 void Jeu::melangerListe()
 {
     std::mt19937 generator(std::random_device{}());
@@ -229,6 +234,7 @@ void Jeu::initPlacement() {
     
 }
 
+// On ajoute un joueur à l'équipe 1 ou 2
 void Jeu::ajoutAttaquant(Attaquant* j, int equipe){
     if (equipe == 1){
         attaquantEquipe1.push_back(j);
@@ -239,6 +245,7 @@ void Jeu::ajoutAttaquant(Attaquant* j, int equipe){
     }
 }
 
+// On ajoute un joueur à l'équipe 1 ou 2
 void Jeu::ajoutMilieu(Milieu* j, int equipe){
     if (equipe == 1){
         milieuEquipe1.push_back(j);
@@ -249,6 +256,7 @@ void Jeu::ajoutMilieu(Milieu* j, int equipe){
     }
 }
 
+// On ajoute un joueur à l'équipe 1 ou 2
 void Jeu::ajoutDefenseur(Defenseur* j, int equipe){
     if (equipe == 1){
         defenseurEquipe1.push_back(j);
@@ -259,6 +267,7 @@ void Jeu::ajoutDefenseur(Defenseur* j, int equipe){
     }
 }
 
+// On ajoute un joueur à l'équipe 1 ou 2
 void Jeu::afficherJoueurs() const{
     for (auto& e : listeAttaquant){
         std::cout << *e << std::endl;
