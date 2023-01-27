@@ -4,7 +4,7 @@
 
 void Jeu::initList(){
 
-    std::ifstream f("res/basedejoueurs.csv");
+    std::ifstream f("cartes/basedejoueurs.csv");
 
     //Suppression des joueurs précédents
     this->deleteJoueurs();
