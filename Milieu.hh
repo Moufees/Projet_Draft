@@ -9,6 +9,7 @@ public:
   ~Milieu() {};
   std::string poste() const {return "Milieu";};
   int getVitesse() const {return Attaquant::getVitesse();};
+  // On surcharge la méthode toCSV() de Joueur pour ajouter la vitesse et la physique
   std::string toCSV() const{
     std::string csv = Attaquant::toCSV();
     csv += "Defense : " + std::to_string(Defenseur::getDefense()) + "\n";

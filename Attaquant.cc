@@ -99,6 +99,7 @@ int Attaquant::tirer(Gardien& gardien, Ballon& ballon){
     }
 }
 
+// On surcharge la méthode toCSV() de la classe JoueurDeChamp
 std::string Attaquant::toCSV() const{
     std::string csv = JoueurDeChamp::toCSV();
     csv += "Dribble : " + std::to_string(_dribble) + "\n";
