@@ -1,6 +1,6 @@
 #include "Application.hh"
-
-Application::Application():ballon(1, NULL)
+//Initialisation de la fenêtre
+Application::Application():ballon(1, NULL) 
 {	
 	sf::ContextSettings options;
 	options.antialiasingLevel = 8;
@@ -15,7 +15,7 @@ void Application::Run()
 	initSprite();
 	// 20 cercles
 	initCircleShape();
-
+    //Initialisation de des score et des commentaire
 	SetText(scoreEquipe1, fontScore, std::to_string(jeu.getScoreEquipe1()), 50);
 	scoreEquipe1.setPosition(710*COEF_ECRAN, 15*COEF_ECRAN);
     scoreEquipe1.setScale(COEF_ECRAN, COEF_ECRAN);
@@ -77,6 +77,7 @@ void Application::Run()
             else window.draw(txtDraft);
 			break;
 		case 3:
+        //On initialise la position des joueurs et du ballon, puis on passe la balle au gardien de l'équipe 1
 			jeu.deleteJoueurs();
             jeu.initPlacement();
 			ballon.setJoueur(*jeu.getGardien(1));
@@ -116,6 +117,7 @@ void Application::Run()
 			ecran = 4;
 			break;
         case 4:
+        //On fixe l'état du jeu à true, si il passe à false le jeu est fini puis on regarde chaque action et on redessine en fonction de l'action
             if (jeu.getEtatJeu() == true) {
                 CheckAction(event);
                 drawGame();
@@ -125,6 +127,7 @@ void Application::Run()
 			}
             break;
 		case 5:
+        //On affiche le gagnant et propose de rejouer
 			drawEnd();
         }
         
@@ -135,6 +138,7 @@ void Application::Run()
 }
 
 void Application::LoadFont()
+// Chargement des polices
 {
 	if (!fontCom.loadFromFile("font/poppins.ttf"))
 	{
@@ -154,6 +158,7 @@ void Application::CheckBtn(sf::Event event)
     }
     if (event.type == sf::Event::MouseButtonPressed && event.mouseButton.button == sf::Mouse::Left && ecran == 2)
     {
+        //Lorsque le joueur clique sur une carte ça choisit un joueur aléatoirement en fonction de la carte sur laquelle il clique (Attaquant, Milieu, Defenseur, Gardien)
         sf::Vector2i mousePosition = sf::Mouse::getPosition(window);
         if (blank[choix].getGlobalBounds().contains(float(mousePosition.x), float(mousePosition.y))) {
 			//std::cout << "Clic sur la carte " << choix << endl;
@@ -188,16 +193,16 @@ void Application::CheckBtn(sf::Event event)
 			}
 
 			choix++;
-            if (choix == 20) { choixCarte.setPosition(-1000, -1000); }
+            if (choix == 20) { choixCarte.setPosition(-1000, -1000); }//On cache la carte si on a fini de choisir les joueurs
             else choixCarte.setPosition(blank[choix].getPosition());
-			if (choix == 10) {
+			if (choix == 10) {//On passe à l'équipe 2
 				jeu.initList();
 				jeu.melangerListe();
                 equipe = 2;
 			}
         }
     }
-	if (input.GetButton().next == true)
+	if (input.GetButton().next == true)//On passe à l'écran suivant
 	{
         if (next){
             ecran++;
@@ -208,36 +213,41 @@ void Application::CheckBtn(sf::Event event)
 }
 
 void Application::CheckAction(sf::Event event)
-{
-    if (input.GetButton().tirer == true) {
+{//On regarde si le joueur a appuyé sur une touche et on fait l'action correspondante
+    if (input.GetButton().tirer == true) {//Si le joueur appuie sur la touche tirer
         actionTirer(jeu.getBallon()->getJoueur()->poste());
         passeON = false;
         sf::sleep(sf::milliseconds(200));
     }
-
+    //Si le joueur appuie sur la touche passer
     if (input.GetButton().passer == true && passeON == 0) {
         passeON = true;
     }
     if (passeON)
     {
+        //Si le joueur est un attaquant en face du but il ne peut pas faire de passe
         if (jeu.getBallon()->getJoueur()->getPlacement() >= 35 || jeu.getBallon()->getJoueur()->getPlacement() <= -35) {
             SetText(commentaire, fontCom, "Vas-y tout seul mon grand les autres sont trop lents", 26);
         }
         
         else {
+            //On affiche les options de passe
             SetText(commentaire, fontCom, "Choisissez a quel joueur vous faites la passe", 26);
             
             if (input.GetButton().right == true) {
+                //Si le joueur appuie sur la touche droite on fait la passe à droite
                 actionPasserCote(jeu.getBallon()->getJoueur()->poste(), 1);
                 passeON = false;
             }
             
             if (input.GetButton().left == true) {
+                //Si le joueur appuie sur la touche gauche on fait la passe à gauche
                 actionPasserCote(jeu.getBallon()->getJoueur()->poste(), -1);
                 passeON = false;
             }
 
             if (input.GetButton().devant == true) {
+                //Si le joueur appuie sur la touche devant on fait la passe devant
                 actionPasserDevant(jeu.getBallon()->getJoueur()->poste());
                 passeON = false;
             }
@@ -247,17 +257,19 @@ void Application::CheckAction(sf::Event event)
     }
 
 	if (input.GetButton().dribbler == true) {
+        //Si le joueur appuie sur la touche dribbler on dribble
         actionDribbler(jeu.getBallon()->getJoueur()->poste());
         passeON = false;
         sf::sleep(sf::milliseconds(200));
     }
 }
-
+//Fonction qui fait le tir
 void Application::actionTirer(std::string poste)
 {
     int team = 2;
     int opp = 1;
 	std::string txt = "Tir de " + jeu.getBallon()->getJoueur()->getNom();
+    //On vérifie le poste du joueur, son placement et son équipe pour savoir si il peut tirer ou non
     if (poste == "Attaquant" || poste == "Milieu") {
         if (jeu.getBallon()->getJoueur()->getPlacement() == 35 || jeu.getBallon()->getJoueur()->getPlacement() == 36 || jeu.getBallon()->getJoueur()->getPlacement() == 37 || jeu.getBallon()->getJoueur()->getPlacement() == -35 || jeu.getBallon()->getJoueur()->getPlacement() == -36 || jeu.getBallon()->getJoueur()->getPlacement() == -37 || jeu.getBallon()->getJoueur()->getPlacement() == 25 || jeu.getBallon()->getJoueur()->getPlacement() == 26 || jeu.getBallon()->getJoueur()->getPlacement() == 27 || jeu.getBallon()->getJoueur()->getPlacement() == -25 || jeu.getBallon()->getJoueur()->getPlacement() == -26 || jeu.getBallon()->getJoueur()->getPlacement() == -27) {
             
@@ -265,7 +277,7 @@ void Application::actionTirer(std::string poste)
                 team = 1;
                 opp = 2;
             }
-
+            //Si il peut tirer on tire et on regarde si il marque ou non
             if (dynamic_cast<Attaquant*>(jeu.getBallon()->getJoueur())->tirer(*jeu.getGardien(opp), *jeu.getBallon()) == 2) {
                 jeu.marquerEquipe(team);
 				jeu.majEtatJeu();
@@ -274,7 +286,7 @@ void Application::actionTirer(std::string poste)
             else {
 				txt = txt + " et il rate \n Quel arret du gardien !";
 			}
-            jeu.initPlacement();
+            jeu.initPlacement();//On remet les placement initiaux
         }
         else {
             txt = "Elimine ton adversaire avant de tirer";
@@ -288,7 +300,7 @@ void Application::actionTirer(std::string poste)
     }
     SetText(commentaire, fontCom, txt, 26);
 }
-
+//Fonction qui fait le dribble
 void Application::actionDribbler(std::string poste) {
     
     int go = -1;
@@ -296,11 +308,12 @@ void Application::actionDribbler(std::string poste) {
     int opp = 1;
     int i = -1;
 	std::string txt;
+    //On vérifie l'équipe du joueur
     if (jeu.getBallon()->getJoueur()->getPlacement() > 0) {
         opp = 2;
         i = 1;
     }
-    
+    // On va ensuite vérifier le poste du joueur pour savoir si il peut dribbler ou non
     if (poste == "Defenseur") {
         txt = "Un defenseur ca ne dribble pas";
         SetText(commentaire, fontCom, txt, 26);
@@ -311,6 +324,7 @@ void Application::actionDribbler(std::string poste) {
         SetText(commentaire, fontCom, txt, 26);
 		return;
     }
+    //Si il peut dribbler on vérifie si il a un joueur en face de lui puis on le dribble si c'est le cas
     else if (poste == "Attaquant") {
         for (auto& e : jeu.getDefenseur(opp)) {
             if (e->getPlacement() == ((jeu.getBallon()->getJoueur()->getPlacement()) * -1) + 20*i) {
@@ -331,12 +345,14 @@ void Application::actionDribbler(std::string poste) {
             }
         }
     }
+    //Si il a réussi , sa position augmente de 5 et son cercle avance
     if (go == 1) {
         jeu.getBallon()->getJoueur()->setPlacement(jeu.getBallon()->getJoueur()->getPlacement() + 5 * i);
         jeu.getBallon()->getJoueur()->setPosX(jeu.getBallon()->getJoueur()->getPosX() + 100 * i);
         txt = txt + " et reussit" + "\nTu l'as passe, tir ou passe devant";
         valide = 1;
     }
+    //Sinon la balle va au gardien adverse
     else if (go == 0) {
         jeu.getBallon()->setJoueur(*jeu.getGardien(opp));
         txt = txt + " et rate" + "\nTu l'as perdu, le gardien a la balle";
@@ -347,21 +363,21 @@ void Application::actionDribbler(std::string poste) {
 
     SetText(commentaire, fontCom, txt, 26);
 }
-
+//Fonction qui fait la passe de côté
 void Application::actionPasserCote(std::string poste, int direction) {
     
     int valide = 0;
     int team = 2;
     std::string txt;
-
+    //On vérifie l'équipe du joueur
     if (jeu.getBallon()->getJoueur()->getPlacement() > 0) team = 1;
-    
+    //On vérifie ensuite le poste pour voir si il peut faire la passe
     if (poste == "Gardien") {
         txt = "Il n'y a qu'un seul gardien,\ndonc personne a cote de toi :(";
         SetText(commentaire, fontCom, txt, 26);
 		return;
     }
-
+//On vérifie si il a un joueur du côté ou il veut faire la passe puis on fait la passe 
     else if (poste == "Attaquant") {
         for (auto& e : jeu.getAttaquant(team)) {
             if (e->getPlacement() == (jeu.getBallon()->getJoueur()->getPlacement()) + direction) {
@@ -399,14 +415,14 @@ void Application::actionPasserCote(std::string poste, int direction) {
     
     SetText(commentaire, fontCom, txt, 26);
 }
-
+//Fonction qui fait la passe devant
 void Application::actionPasserDevant(std::string poste) {
 
     int valide = 0;
     int team = 2;
     int i = -1;
 	std::string txt;
-
+    //On vérifie l'équipe du joueur
     if (jeu.getBallon()->getJoueur()->getPlacement() > 0) {
         team = 1;
         i = 1;
@@ -416,7 +432,7 @@ void Application::actionPasserDevant(std::string poste) {
         SetText(commentaire, fontCom, "Le gardien adverse n'est pas dans ton equipe", 26);
         return;
     }
-
+    //On vérifie si il a un joueur devant lui et on lui fait la passe si il n'a aucun adversaire à éliminer
     else if (poste == "Gardien") {
         for (auto& e : jeu.getDefenseur(team)) {
             if (e->getPlacement() == (jeu.getBallon()->getJoueur()->getPlacement()) + 10 * i) {
@@ -427,7 +443,7 @@ void Application::actionPasserDevant(std::string poste) {
         }
         return;
     }
-
+    //Si le Milieu est avancé de 5, il a donc éliminer son joueur et peut faire la passe
     else if (poste == "Milieu") {
         for (auto& e : jeu.getAttaquant(team)) {
             if (e->getPlacement() == (jeu.getBallon()->getJoueur()->getPlacement()) + 5*i) {
@@ -453,7 +469,7 @@ void Application::actionPasserDevant(std::string poste) {
 
     SetText(commentaire, fontCom, txt, 26);
 }
-
+//Fonction qui gêre les textes
 void Application::SetText(sf::Text& txt, sf::Font& font, std::string str, int size)
 {
     // On lui indique quelle police utiliser
@@ -467,14 +483,14 @@ void Application::SetText(sf::Text& txt, sf::Font& font, std::string str, int si
     // Modification du style
     txt.setStyle(sf::Text::Bold);
 }
-
+//Fonction qui charge les images
 void Application::LoadSprite(sf::Sprite& sprite, sf::Texture& texture, std::string path)
 {
 	if (!texture.loadFromFile(path)) std::cout << "Erreur chargement image" << std::endl;
 	//std::cout << "Chargement image :" << path << endl;
 	sprite.setTexture(texture);
 }
-
+//Fonctioh qui initalise les images
 void Application::initSprite()
 {
     LoadSprite(terrain_flou, textureFlou, "images/terrain_flou_1.png");
@@ -523,7 +539,7 @@ void Application::initSprite()
 	txtAvMatch.setPosition(0, 760*COEF_ECRAN);
     txtAvMatch.setScale(COEF_ECRAN, COEF_ECRAN);
 }
-
+// fonction qui initialise les cercles
 void Application::initCircleShape(){
 	// 10 cercles de draft
 	for (int i = 0; i < 10; i++)
@@ -565,7 +581,7 @@ void Application::initCircleShape(){
     circle[18].setPosition(1205*COEF_ECRAN, 574*COEF_ECRAN);
     circle[19].setPosition(1400*COEF_ECRAN, 374*COEF_ECRAN);
 }
-
+//Fonction qui initialise les cartes vides
 void Application::initPositionBlank() {
     choixCarte.setPosition(630*COEF_ECRAN, 104*COEF_ECRAN);
     choixCarte.setScale(COEF_ECRAN, COEF_ECRAN);
@@ -597,7 +613,7 @@ void Application::initPositionBlank() {
         blank[i].setScale(COEF_ECRAN, COEF_ECRAN);
     }
 }
-
+//Fonction qui dessine le jeu lorsqu'il est en cours
 void Application::drawGame(){
     window.draw(terrain);
     updatePositionCircle();
@@ -616,7 +632,7 @@ void Application::drawGame(){
 	window.draw(scoreEquipe2);
     window.draw(commentaire);
 }
-
+//Fonction qui affiche l'écran de fin
 void Application::drawEnd() {
     window.draw(terrainWin);
 	window.draw(confetti);
@@ -633,7 +649,7 @@ void Application::drawEnd() {
     window.draw(scoreEquipe2);
 	window.draw(commentaire);
 }
-
+//Fonction qui met à jour les positions des cercles
 void Application::updatePositionCircle(){
     int i = 0;
     for (auto& e : jeu.getAttaquant(1)) {
