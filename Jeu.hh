@@ -23,6 +23,7 @@ class Jeu
     void initList();
 	void deleteEquipe();
     void melangerListe();
+    void afficherJoueurs() const;
 
     // Liste des joueurs
     std::vector <Attaquant*> getListeAttaquant() const {return listeAttaquant;};
@@ -44,13 +45,13 @@ class Jeu
     std::vector <Defenseur*> getDefenseur(int numEquipe) const {if (numEquipe == 1) return defenseurEquipe1;
                                                                 else return defenseurEquipe2;};
 
-    Gardien* getGardien(int numEquipe) const {  if (numEquipe == 1) return gardienEquipe1;
-                                                else return gardienEquipe2;};
+    Gardien* getGardien(int numEquipe) const {  if (numEquipe == 1) return gardienEquipe1.back();
+                                                else return gardienEquipe2.back();};
 
     
     //
-    void setGardien(Gardien* g, int numEquipe) {if (numEquipe == 1) gardienEquipe1 = g;
-                                                else gardienEquipe2 = g;};
+    void setGardien(Gardien* g, int numEquipe) {if (numEquipe == 1) gardienEquipe1.push_back(g);
+                                                else gardienEquipe2.push_back(g);};
 
     void initPlacement();
     Ballon* getBallon() const { return ballon; };
@@ -89,8 +90,8 @@ class Jeu
     std::vector <Milieu*> milieuEquipe2;
     std::vector <Defenseur*> defenseurEquipe1;
     std::vector <Defenseur*> defenseurEquipe2;
-    Gardien* gardienEquipe1;
-    Gardien* gardienEquipe2;
+    std::list <Gardien*> gardienEquipe1;
+    std::list <Gardien*> gardienEquipe2;
 	bool etatJeu = true;
     int scoreEquipe1;
     int scoreEquipe2;

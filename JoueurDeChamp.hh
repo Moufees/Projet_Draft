@@ -8,6 +8,12 @@ public:
   ~JoueurDeChamp() {};
   int getVitesse() const {return _vitesse;};
   int getPhysique() const {return _physique;};
+  std::string toCSV() const{
+    std::string csv = Joueur::toCSV();
+    csv += "Vitesse : " + std::to_string(_vitesse) + "\n";
+    csv += "Physique : " + std::to_string(_physique) + "\n";  
+    return csv;
+  }
   
 private:
   int _vitesse;

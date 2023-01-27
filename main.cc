@@ -1,13 +1,18 @@
-// Inclusion des fonctionnalités
+// Inclusion des fonctionnalitï¿½s
 #include "Application.hh"
 
 
-// Fonction main, point de départ du programme
+// Fonction main, point de dï¿½part du programme
 int main()
 {
 	// Lancement de l'application
 	Application app;
 	app.Run();
+	//Jeu jeu;
+
+	//On affiche tous les joueurs
+	//jeu.afficherJoueurs();
+
     
     return 0;
 }

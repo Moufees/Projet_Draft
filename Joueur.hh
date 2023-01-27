@@ -25,6 +25,7 @@ public:
   void passer(Joueur& coequipier, Ballon& ballon);
   virtual std::string poste() const = 0;
   virtual int getVitesse() const = 0;
+  virtual std::string toCSV() const;
   static Joueur* creerJoueur(std::vector<std::string> param);
 
 private:
@@ -35,5 +36,7 @@ private:
   int _posY;
   std::string _path;
 };
+
+std::ostream& operator<<(std::ostream& os, const Joueur& joueur);
 
 #endif

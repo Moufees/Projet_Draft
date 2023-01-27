@@ -10,6 +10,12 @@ public:
   int getVitesse() const {return 0;};
   int getArret() const {return _arret;};
   int getSortie() const {return _sortie;};
+  std::string toCSV() const{
+    std::string csv = Joueur::toCSV();
+    csv += "Arret : " + std::to_string(_arret) + "\n";
+    csv += "Sortie : " + std::to_string(_sortie) + "\n";  
+    return csv;
+  }
   
 private:
   int _arret;

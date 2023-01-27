@@ -98,3 +98,10 @@ int Attaquant::tirer(Gardien& gardien, Ballon& ballon){
         }
     }
 }
+
+std::string Attaquant::toCSV() const{
+    std::string csv = JoueurDeChamp::toCSV();
+    csv += "Dribble : " + std::to_string(_dribble) + "\n";
+    csv += "Tir : " + std::to_string(_tir) + "\n";  
+    return csv;
+}

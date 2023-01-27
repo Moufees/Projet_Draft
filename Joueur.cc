@@ -32,3 +32,16 @@ Joueur* Joueur::creerJoueur(std::vector<std::string> param)
     }
     return NULL;
 }
+
+std::string Joueur::toCSV() const{
+    std::string csv = "";
+    csv += getNom() + " (" + poste() + ")" + "\n";
+    csv += "Passe : "+ std::to_string(getPasse()) + "\n";
+    csv += "Vitesse : "+ std::to_string(getVitesse()) + "\n";
+    return csv;
+}
+
+std::ostream& operator<<(std::ostream& os, const Joueur& joueur){
+    os << joueur.toCSV();
+    return os;
+}

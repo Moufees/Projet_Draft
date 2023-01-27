@@ -13,6 +13,7 @@ public:
   int tirer(Gardien& gardien, Ballon& ballon);
   int getDribble() const {return _dribble;};
   int dribbler(Joueur& adversaire);
+  std::string toCSV() const;
 
 private :
     int _dribble;

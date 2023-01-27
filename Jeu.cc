@@ -55,14 +55,20 @@ void Jeu::deleteEquipe() {
         delete *it;
     }
     // Suppression des gardiens précédents s'il y en a
-    if (gardienEquipe1 != nullptr)  gardienEquipe1 = nullptr;
-    if (gardienEquipe2 != nullptr)  gardienEquipe2 = nullptr;
+    for (auto it = gardienEquipe1.begin(); it != gardienEquipe1.end(); it++){
+        delete *it;
+    }
+    for (auto it = gardienEquipe2.begin(); it != gardienEquipe2.end(); it++){
+        delete *it;
+    }
 	attaquantEquipe1.clear();
 	attaquantEquipe2.clear();
 	milieuEquipe1.clear();
 	milieuEquipe2.clear();
 	defenseurEquipe1.clear();
 	defenseurEquipe2.clear();
+    gardienEquipe1.clear();
+    gardienEquipe2.clear();
 }
 
 void Jeu::deleteJoueurs(){
@@ -97,6 +103,7 @@ void Jeu::melangerListe()
 Attaquant* Jeu::choixAttaquant() const{
     std::mt19937 gen(std::chrono::system_clock::now().time_since_epoch().count());
     std::uniform_int_distribution<> dis(0, listeAttaquant.size()-1);
+    // Retourne un pointeur vers un attaquant choisi aléatoirement dans la liste
     return listeAttaquant[dis(gen)];
 }
 
@@ -249,5 +256,33 @@ void Jeu::ajoutDefenseur(Defenseur* j, int equipe){
     else{
         defenseurEquipe2.push_back(j);
         j->setPlacement(j->getPlacement()*-1);
+    }
+}
+
+void Jeu::afficherJoueurs() const{
+    for (auto& e : listeAttaquant){
+        std::cout << *e << std::endl;
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    for (auto& e : listeMilieu){
+        std::cout << *e << std::endl;
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    for (auto& e : listeDefenseur){
+        std::cout << *e << std::endl;
+        std::cout << std::endl;
+    }
+
+    std::cout << std::endl;
+
+    for (auto& e : listeGardien){
+        std::cout << *e << std::endl;
+        std::cout << std::endl;
     }
 }

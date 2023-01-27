@@ -8,6 +8,10 @@ public:
   ~Defenseur() {};
   std::string poste() const {return "Defenseur";};
   int getDefense() const {return _defense;};
+  std::string toCSV() const{
+    std::string csv = JoueurDeChamp::toCSV();
+    csv += "Defense : " + std::to_string(_defense) + "\n";
+    return csv;}
 
 private :
     int _defense;
