@@ -136,11 +136,11 @@ void Application::Run()
 
 void Application::LoadFont()
 {
-	if (!fontCom.loadFromFile("res/poppins.ttf"))
+	if (!fontCom.loadFromFile("font/poppins.ttf"))
 	{
 		std::cout << "Erreur lors du chargement de la police" << std::endl;
 	}
-	if (!fontScore.loadFromFile("res/score.ttf"))
+	if (!fontScore.loadFromFile("font/score.ttf"))
 	{
 		std::cout << "Erreur lors du chargement de la police" << std::endl;
 	}
@@ -477,49 +477,49 @@ void Application::LoadSprite(sf::Sprite& sprite, sf::Texture& texture, std::stri
 
 void Application::initSprite()
 {
-    LoadSprite(terrain_flou, textureFlou, "res/terrain_flou_1.png");
+    LoadSprite(terrain_flou, textureFlou, "images/terrain_flou_1.png");
     terrain_flou.setPosition(0, 0);
     terrain_flou.setScale(COEF_ECRAN, COEF_ECRAN);
     
-    LoadSprite(choixCarte, textureChoix, "res/choix.png");
+    LoadSprite(choixCarte, textureChoix, "cartes/choix.png");
     // 10 Cartes draft avec la m�me texture
     for (int i = 0; i < 20; i++)
     {
-        LoadSprite(blank[i], textureJoueur[i], "res/blank.png");
+        LoadSprite(blank[i], textureJoueur[i], "cartes/blank.png");
         blank[i].setScale(COEF_ECRAN, COEF_ECRAN);
     }
 
     initPositionBlank();
     
-	LoadSprite(terrain, textureTerrain, "res/terrain.jpg");
+	LoadSprite(terrain, textureTerrain, "images/terrain.jpg");
 	terrain.setPosition(0, 0);
     terrain.setScale(COEF_ECRAN, COEF_ECRAN);
 
-	LoadSprite(ball, textureBall, "res/ballon_petit.png");
+	LoadSprite(ball, textureBall, "images/ballon_petit.png");
 	ball.setPosition(0, 0);
     ball.setScale(COEF_ECRAN, COEF_ECRAN);
     
-    LoadSprite(instruction, textureInstruction, "res/instruction.png");
+    LoadSprite(instruction, textureInstruction, "images/instruction.png");
     instruction.setPosition(0, 800*COEF_ECRAN);
     instruction.setScale(COEF_ECRAN, COEF_ECRAN);
 
-	LoadSprite(terrainWin, textureWin, "res/terrainWin.png");
+	LoadSprite(terrainWin, textureWin, "images/terrainWin.png");
 	terrainWin.setPosition(0, 0);
     terrainWin.setScale(COEF_ECRAN, COEF_ECRAN);
     
-	LoadSprite(confetti, textureConfetti, "res/confetti.png");
+	LoadSprite(confetti, textureConfetti, "images/confetti.png");
 	confetti.setPosition(0, 0);
     confetti.setScale(COEF_ECRAN, COEF_ECRAN);
 
-	LoadSprite(menu, textureMenu, "res/menu.png");
+	LoadSprite(menu, textureMenu, "images/menu.png");
 	menu.setPosition(0, 0);
     menu.setScale(COEF_ECRAN, COEF_ECRAN);
 
-	LoadSprite(txtDraft, textureTxtDraft, "res/txtdraft.png");
+	LoadSprite(txtDraft, textureTxtDraft, "images/txtdraft.png");
 	txtDraft.setPosition(0, 760*COEF_ECRAN);
     txtDraft.setScale(COEF_ECRAN, COEF_ECRAN);
     
-	LoadSprite(txtAvMatch, textureTxtAvMatch, "res/txtdraftfini.png");
+	LoadSprite(txtAvMatch, textureTxtAvMatch, "images/txtdraftfini.png");
 	txtAvMatch.setPosition(0, 760*COEF_ECRAN);
     txtAvMatch.setScale(COEF_ECRAN, COEF_ECRAN);
 }
@@ -593,7 +593,7 @@ void Application::initPositionBlank() {
     blank[19].setPosition(1350*COEF_ECRAN, 304*COEF_ECRAN);
     for (int i = 0; i < 20; i++)
     {
-        LoadSprite(blank[i], textureJoueur[i], "res/blank.png");
+        LoadSprite(blank[i], textureJoueur[i], "cartes/blank.png");
         blank[i].setScale(COEF_ECRAN, COEF_ECRAN);
     }
 }
